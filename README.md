@@ -19,13 +19,20 @@ para ello nos apoyaremos del uso de los siguientes comandos
 el primero de ellos es para convertir nuestro proyecto a un proyecto eclipse, el siguiente es para convertir
 nuestro proyecto a una aplicacion WebApp, en la cual trabajaremos. Despues de esto ya tendremos nuestro proyecto para manipularlo desde 
 eclipse; Dentro de las dependencias incluí los frameworks Log4j, Spring version 4.1.4, Jersey , postgresql en
-la veersion mas actual que es la 42.1.1
+la veersion mas actual que es la 42.1.1.
 
 
 Dentro de la carpeta Examen_WebAppMTS podemos ver que hay una carpeta llamada DB, en el esta el DER(Diagrama Entidad Relacional)
 ademas de los distintos Scripts para que pueda funcionar nuesta WebApp, en mi caso Utilize PostgreSQL 9.6 y utilize el programa 
 pgAdmin 3, ya que el pgAdmin 4 no lo supe manipula ademas que cargaba lento, mi base de datos se llama db_alexvz, en el cual tiene el 
-esquema alexvz, donde estan mis tablas, para la utilizacion del proyecto.
+esquema alexvz, donde estan mis tablas, para la utilizacion del proyecto. Dentro del programa ejecutamos las sentencias sql para la correcta utilizacion de la base de datos y se pueda integrar al proyecto, ademas dentro de Spring en un bean debemos de especificar nuestro driver de PostgreSQL, en mi caso:
+
+<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="url" value="jdbc:postgresql://localhost:5432/db_alexvz"/>
+		<property name="username" value="postgres" />
+		<property name="password" value="" />
+</bean>
 
 
 
