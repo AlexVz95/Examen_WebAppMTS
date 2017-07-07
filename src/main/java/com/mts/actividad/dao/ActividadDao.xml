@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	
+	<bean name="ActividadDao" class="com.mts.actividad.dao.ActividadDaoImpl">
+		<property name="dataSource" ref="dataSource"></property>
+		
+		<property name="qryInsertPaciente">
+			<value>
+				<![CDATA[
+				
+						insert into alexvz."Pacientes"
+						values ((select max("IdPaciente") + 1 from alexvz."Pacientes"),?,?,?,?,?)
+
+				]]>
+			</value>
+		</property>
+		
+		<property name="qryPacientes">
+			<value>
+				<![CDATA[
+				
+						Select * from alexvz."Pacientes"
+				]]>
+			</value>
+		</property>
+				
+		<property name="qryUpdatePacientes">
+			<value>
+				<![CDATA[
+				
+						update alexvz."Pacientes" set "Nombre"=(?), "Cedula_Ide"=(?), "Telefono"=(?), "Direccion"=(?), "Edad"=? where "IdPaciente"=?
+				]]>
+			</value>
+		</property>
+
+		<property name="qryInsertHomeopata">
+			<value>
+				<![CDATA[
+						
+						insert into alexvz."Homeopatas" 
+						values 
+						((select max("IdHomeopata") + 1 from alexvz."Homeopatas"),?,?,?,?,?)
+						
+				]]>
+			</value>
+		</property>
+		
+		<property name="qryInsertMedico">
+			<value>
+				<![CDATA[
+				
+						insert into alexvz."Medicos" 
+						values 
+						((select max("IdMedico") + 1 from alexvz."Medicos"),(select max("IdHomeopata") from alexvz."Homeopatas"),?)
+
+
+				]]>
+			</value>
+		</property>
+		
+		<property name="qryUpdateHomeopata">
+			<value>
+				<![CDATA[
+						
+						update alexvz."Homeopatas" set 
+						"Nombre"=(?), "Cedula_Ide"=(?), "Direccion"=(?), "Telefono"=(?), "Fecha_Inicio"=(?)
+						where "IdHomeopata"=(?)
+
+						
+				]]>
+			</value>
+		</property>
+		
+		<property name="qryUpdateMedico">
+			<value>
+				<![CDATA[
+						update alexvz."Medicos" set "Especialidad"=(?) where "idHomeopata"=?
+
+				]]>
+			</value>
+		</property>
+
+		<property name="qryUpdateMedico2">
+			<value>
+				<![CDATA[
+				
+						update alexvz."Medicos" set "idHomeopata"=?, "Especialidad"=(?) where "IdMedico"=?
+
+				]]>
+			</value>
+		</property>
+		
+
+		<property name="qryMedicos">
+			<value>
+				<![CDATA[
+				
+						select * from alexvz."Homeopatas"
+						join alexvz."Medicos"
+						on "idHomeopata"="IdHomeopata"
+
+				]]>
+			</value>
+		</property>
+				
+		<property name="qryHomeopatas">
+			<value>
+				<![CDATA[
+				
+						Select * from alexvz."Homeopatas"
+
+				]]>
+			</value>
+		</property>
+				
+		<property name="qryMedicamentos">
+			<value>
+				<![CDATA[
+						Select * from alexvz."Medicamentos"
+				]]>
+			</value>
+		</property>
+				
+		<property name="qryInsertMedicamentos">
+			<value>
+				<![CDATA[
+						insert into alexvz."Medicamentos" values
+						((select max("IdMedicamentos") + 1 from alexvz."Medicamentos"), ?, ?)
+
+				]]>
+			</value>
+		</property>
+		
+		<property name="qryUpdateMedicamentos">
+			<value>
+				<![CDATA[
+						
+					update alexvz."Medicamentos" set "Nombre"=?, "Codigo_Med"=? where "IdMedicamentos"=?
+
+				]]>
+			</value>
+		</property>
+				
+		<property name="qrySustancias">
+			<value>
+				<![CDATA[
+						
+					Select * from alexvz."Sustancias"
+
+				]]>
+			</value>
+		</property>
+		
+		<property name="qryInsertCitas">
+			<value>
+				<![CDATA[
+						
+					
+					insert into alexvz."Consultas"
+					values ((select max("IdConsulta") + 1 from alexvz."Consultas"),(?),(?),(?),?, ?,?)
+
+				]]>
+			</value>
+		</property>
+		
+		<property name="qryCitas">
+			<value>
+				<![CDATA[
+						
+					select * from alexvz."Consultas"
+
+				]]>
+			</value>
+		</property>
+		
+		<property name="qryUpdateCitas">
+			<value>
+				<![CDATA[
+						
+					
+					update alexvz."Consultas"
+					set
+					"Fecha"=?, "Costo"=?, "Hora_Consulta"=?, "idHomeopata"=?,
+					"idMedico"=?, "idPaciente"=? where "IdConsulta"=?
+
+				]]>
+			</value>
+		</property>
+		
+	</bean>
+</beans>

@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?><Db flnm="db_alexvz" nm="db_alexvz" ver="1.3.4">
+  <VerLbl/>
+  <VerNotes/>
+  <DefTblOpts/>
+  <DocFolder>C:\Users\walmart\Documents\PracticasMeltsan\GitHub\Practica_WebApp\DB</DocFolder>
+  <Sch Cm="" nm="alexvz">
+    <Tbl UsSo="1" nm="Consultas">
+      <TblOpts>WITHOUT OIDS</TblOpts>
+      <Pk ClNs="IdConsulta" nm="pkConsultas"/>
+      <Cl au="0" df="" nm="IdConsulta" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="Fecha" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="10" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="Costo" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="Hora_Consulta" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="10" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="idHomeopata" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="idMedico" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="idPaciente" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_Consultas_Homeopatas" prLkCl="IdHomeopata" upAc="3">
+        <PrTb mn="0" nm="Homeopatas" oe="1" sch="alexvz" zr="1"/>
+        <CdTb mn="1" nm="Consultas" oe="0" sch="alexvz" zr="1"/>
+        <ClPr cdCl="idHomeopata" prCl="IdHomeopata"/>
+      </Fk>
+      <Fk deAc="3" nm="fk_Consultas_Medicos" prLkCl="IdMedico" upAc="3">
+        <PrTb mn="0" nm="Medicos" oe="1" sch="alexvz" zr="1"/>
+        <CdTb mn="1" nm="Consultas" oe="0" sch="alexvz" zr="1"/>
+        <ClPr cdCl="idMedico" prCl="IdMedico"/>
+      </Fk>
+      <Fk deAc="3" nm="fk_Consultas_Pacientes" prLkCl="IdPaciente" upAc="3">
+        <PrTb mn="0" nm="Pacientes" oe="1" sch="alexvz" zr="1"/>
+        <CdTb mn="1" nm="Consultas" oe="0" sch="alexvz" zr="1"/>
+        <ClPr cdCl="idPaciente" prCl="IdPaciente"/>
+      </Fk>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="Enfermedad">
+      <TblOpts>WITHOUT OIDS</TblOpts>
+      <Pk ClNs="IdEnfermedad" nm="pkEnfermedad"/>
+      <Cl au="0" df="" nm="IdEnfermedad" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="Nombre" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="30" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="Desc" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="30" sc="null" sg="1" un="0"/>
+      </Cl>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="Enfermedad_Reco">
+      <TblOpts>WITHOUT OIDS</TblOpts>
+      <Cl au="0" df="" nm="idEnfermedad" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="idMedicamentos" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="Enfermedad_Reco" prLkCl="IdEnfermedad" upAc="3">
+        <PrTb mn="0" nm="Enfermedad" oe="1" sch="alexvz" zr="0"/>
+        <CdTb mn="1" nm="Enfermedad_Reco" oe="0" sch="alexvz" zr="1"/>
+        <ClPr cdCl="idEnfermedad" prCl="IdEnfermedad"/>
+      </Fk>
+      <Fk deAc="3" nm="fk_Enfermedad_Reco_Medicamentos" prLkCl="IdMedicamentos" upAc="3">
+        <PrTb mn="0" nm="Medicamentos" oe="1" sch="alexvz" zr="0"/>
+        <CdTb mn="1" nm="Enfermedad_Reco" oe="0" sch="alexvz" zr="1"/>
+        <ClPr cdCl="idMedicamentos" prCl="IdMedicamentos"/>
+      </Fk>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="Homeopatas">
+      <TblOpts>WITHOUT OIDS</TblOpts>
+      <Pk ClNs="IdHomeopata" nm="pkHomeopatas"/>
+      <Cl au="0" df="" nm="IdHomeopata" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="Nombre" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="40" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="Cedula_Ide" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="18" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="Direccion" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="40" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="Telefono" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="10" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="Fecha_Inicio" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="10" sc="null" sg="1" un="0"/>
+      </Cl>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="Medicamentos">
+      <TblOpts>WITHOUT OIDS</TblOpts>
+      <Pk ClNs="IdMedicamentos" nm="pkMedicamentos"/>
+      <Cl au="0" df="" nm="IdMedicamentos" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="Nombre" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="30" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="Codigo_Med" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="10" sc="null" sg="1" un="0"/>
+      </Cl>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="Medicos">
+      <TblOpts>WITHOUT OIDS</TblOpts>
+      <Pk ClNs="IdMedico" nm="pkMedicos"/>
+      <Cl au="0" df="" nm="IdMedico" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="idHomeopata" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="Especialidad" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="15" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_Medicos_Homeopatas" prLkCl="IdHomeopata" upAc="3">
+        <PrTb mn="0" nm="Homeopatas" oe="1" sch="alexvz" zr="1"/>
+        <CdTb mn="1" nm="Medicos" oe="0" sch="alexvz" zr="1"/>
+        <ClPr cdCl="idHomeopata" prCl="IdHomeopata"/>
+      </Fk>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="Paciente_atendido">
+      <TblOpts>WITHOUT OIDS</TblOpts>
+      <Cl au="0" df="" nm="idHomeopata" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="idMedicos" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="idPaciente" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="idEnfermedad" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="idMedicamentos" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="idConsulta" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_Paciente_atendido_Consultas" prLkCl="IdConsulta" upAc="3">
+        <PrTb mn="0" nm="Consultas" oe="1" sch="alexvz" zr="1"/>
+        <CdTb mn="1" nm="Paciente_atendido" oe="0" sch="alexvz" zr="1"/>
+        <ClPr cdCl="idConsulta" prCl="IdConsulta"/>
+      </Fk>
+      <Fk deAc="3" nm="fk_Paciente_atendido_Enfermedad" prLkCl="IdEnfermedad" upAc="3">
+        <PrTb mn="0" nm="Enfermedad" oe="1" sch="alexvz" zr="1"/>
+        <CdTb mn="1" nm="Paciente_atendido" oe="0" sch="alexvz" zr="1"/>
+        <ClPr cdCl="idEnfermedad" prCl="IdEnfermedad"/>
+      </Fk>
+      <Fk deAc="3" nm="fk_Paciente_atendido_Homeopatas" prLkCl="IdHomeopata" upAc="3">
+        <PrTb mn="0" nm="Homeopatas" oe="1" sch="alexvz" zr="1"/>
+        <CdTb mn="1" nm="Paciente_atendido" oe="0" sch="alexvz" zr="1"/>
+        <ClPr cdCl="idHomeopata" prCl="IdHomeopata"/>
+      </Fk>
+      <Fk deAc="3" nm="fk_Paciente_atendido_Medicamentos" prLkCl="IdMedicamentos" upAc="3">
+        <PrTb mn="0" nm="Medicamentos" oe="1" sch="alexvz" zr="1"/>
+        <CdTb mn="1" nm="Paciente_atendido" oe="0" sch="alexvz" zr="1"/>
+        <ClPr cdCl="idMedicamentos" prCl="IdMedicamentos"/>
+      </Fk>
+      <Fk deAc="3" nm="fk_Paciente_atendido_Medicos" prLkCl="IdMedico" upAc="3">
+        <PrTb mn="0" nm="Medicos" oe="1" sch="alexvz" zr="1"/>
+        <CdTb mn="1" nm="Paciente_atendido" oe="0" sch="alexvz" zr="1"/>
+        <ClPr cdCl="idMedicos" prCl="IdMedico"/>
+      </Fk>
+      <Fk deAc="3" nm="fk_Paciente_atendido_Pacientes" prLkCl="IdPaciente" upAc="3">
+        <PrTb mn="0" nm="Pacientes" oe="1" sch="alexvz" zr="1"/>
+        <CdTb mn="1" nm="Paciente_atendido" oe="0" sch="alexvz" zr="1"/>
+        <ClPr cdCl="idPaciente" prCl="IdPaciente"/>
+      </Fk>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="Pacientes">
+      <TblOpts>WITHOUT OIDS</TblOpts>
+      <Pk ClNs="IdPaciente" nm="pkPacientes"/>
+      <Cl au="0" df="" nm="IdPaciente" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="Nombre" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="40" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="Cedula_Ide" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="18" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="Telefono" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="10" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="Direccion" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="40" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="Edad" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="Sustancias">
+      <TblOpts>WITHOUT OIDS</TblOpts>
+      <Pk ClNs="idSustancias" nm="pkSustancias"/>
+      <Cl au="0" df="" nm="idSustancias" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="idMedicamentos" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="Nombre" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="30" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="Codigo_Sus" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="10" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="Combinacion" nu="1">
+        <DT arr="0" ds="Boolean" en="" id="16" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_Sustancias_Medicamentos" prLkCl="IdMedicamentos" upAc="3">
+        <PrTb mn="0" nm="Medicamentos" oe="1" sch="alexvz" zr="0"/>
+        <CdTb mn="1" nm="Sustancias" oe="0" sch="alexvz" zr="1"/>
+        <ClPr cdCl="idMedicamentos" prCl="IdMedicamentos"/>
+      </Fk>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <CustomTypes/>
+  </Sch>
+  <Sch Cm="" nm="schemaA">
+    <CustomTypes/>
+  </Sch>
+  <Dgm nm="diagramA">
+    <RnCf ClkAct="true" FtSz="11" lkStgy="RightAngleStrategy" zm="1.0">
+      <VbCfg>
+        <Fg ky="Auto Number" vl="0"/>
+        <Fg ky="Check" vl="0"/>
+        <Fg ky="Comment" vl="0"/>
+        <Fg ky="Data Type" vl="1"/>
+        <Fg ky="Default" vl="0"/>
+        <Fg ky="ENUM Values" vl="0"/>
+        <Fg ky="Length" vl="1"/>
+        <Fg ky="Name" vl="1"/>
+        <Fg ky="Nullable" vl="0"/>
+        <Fg ky="Schema Name" vl="0"/>
+        <Fg ky="Signed" vl="0"/>
+      </VbCfg>
+    </RnCf>
+    <DiaProps>
+      <Show AllCols="1" FkCols="1" FkNms="1" PkCols="1"/>
+      <ErNotation>BarkerErNotation</ErNotation>
+      <DbTableRectangleFill>HeaderFooterFill</DbTableRectangleFill>
+      <svg path=""/>
+    </DiaProps>
+    <TbGl bkCl="ff6666ff" sch="alexvz" tbl="Consultas" x="423" y="268"/>
+    <TbGl bkCl="ff6666ff" sch="alexvz" tbl="Enfermedad" x="425" y="51"/>
+    <TbGl bkCl="ff6666ff" sch="alexvz" tbl="Enfermedad_Reco" x="92" y="50"/>
+    <TbGl bkCl="ff6666ff" sch="alexvz" tbl="Homeopatas" x="1114" y="50"/>
+    <TbGl bkCl="ff6666ff" sch="alexvz" tbl="Medicamentos" x="414" y="146"/>
+    <TbGl bkCl="ff6666ff" sch="alexvz" tbl="Medicos" x="1114" y="185"/>
+    <TbGl bkCl="ff6666ff" sch="alexvz" tbl="Paciente_atendido" x="780" y="50"/>
+    <TbGl bkCl="ff6666ff" sch="alexvz" tbl="Pacientes" x="1114" y="281"/>
+    <TbGl bkCl="ff6666ff" sch="alexvz" tbl="Sustancias" x="50" y="146"/>
+    <FkGl bkCl="ff000000" childEdge="NORTH" nm="alexvz.Consultas.fk_Consultas_Homeopatas" parentEdge="WEST" positioner="TwoLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="PARENT_LINE" x1="1114" x2="545" y1="120" y2="120"/>
+        <positionableLine lineRole="CHILD_LINE" x1="541" x2="541" y1="268" y2="124"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="NORTH" nm="alexvz.Consultas.fk_Consultas_Medicos" parentEdge="WEST" positioner="TwoLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="PARENT_LINE" x1="1114" x2="545" y1="229" y2="229"/>
+        <positionableLine lineRole="CHILD_LINE" x1="541" x2="541" y1="268" y2="233"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="EAST" nm="alexvz.Consultas.fk_Consultas_Pacientes" parentEdge="WEST" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="1114" x2="660" y1="333" y2="333"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="EAST" nm="alexvz.Enfermedad_Reco.Enfermedad_Reco" parentEdge="WEST" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="425" x2="306" y1="77" y2="77"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="EAST" nm="alexvz.Enfermedad_Reco.fk_Enfermedad_Reco_Medicamentos" parentEdge="NORTH" positioner="TwoLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="PARENT_LINE" x1="537" x2="537" y1="146" y2="54"/>
+        <positionableLine lineRole="CHILD_LINE" x1="306" x2="533" y1="50" y2="50"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="NORTH" nm="alexvz.Medicos.fk_Medicos_Homeopatas" parentEdge="SOUTH" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="1228" x2="1228" y1="155" y2="185"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="SOUTH" nm="alexvz.Paciente_atendido.fk_Paciente_atendido_Consultas" parentEdge="EAST" positioner="TwoLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="PARENT_LINE" x1="660" x2="776" y1="307" y2="307"/>
+        <positionableLine lineRole="CHILD_LINE" x1="780" x2="780" y1="155" y2="303"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="WEST" nm="alexvz.Paciente_atendido.fk_Paciente_atendido_Enfermedad" parentEdge="EAST" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="659" x2="780" y1="84" y2="84"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="EAST" nm="alexvz.Paciente_atendido.fk_Paciente_atendido_Homeopatas" parentEdge="WEST" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="1114" x2="994" y1="102" y2="102"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="WEST" nm="alexvz.Paciente_atendido.fk_Paciente_atendido_Medicamentos" parentEdge="NORTH" positioner="TwoLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="PARENT_LINE" x1="655" x2="655" y1="146" y2="96"/>
+        <positionableLine lineRole="CHILD_LINE" x1="780" x2="659" y1="92" y2="92"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="SOUTH" nm="alexvz.Paciente_atendido.fk_Paciente_atendido_Medicos" parentEdge="WEST" positioner="TwoLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="PARENT_LINE" x1="1114" x2="784" y1="207" y2="207"/>
+        <positionableLine lineRole="CHILD_LINE" x1="780" x2="780" y1="155" y2="203"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="SOUTH" nm="alexvz.Paciente_atendido.fk_Paciente_atendido_Pacientes" parentEdge="WEST" positioner="TwoLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="PARENT_LINE" x1="1114" x2="891" y1="316" y2="316"/>
+        <positionableLine lineRole="CHILD_LINE" x1="887" x2="887" y1="155" y2="312"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="EAST" nm="alexvz.Sustancias.fk_Sustancias_Medicamentos" parentEdge="WEST" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="414" x2="294" y1="179" y2="179"/>
+      </positionableLines>
+    </FkGl>
+    <Notes/>
+    <Zones/>
+  </Dgm>
+  <RnmMgr NxRnmId="1"/>
+  <DbDocOptionMgr>
+    <BasicOptionMgr>
+      <Name>db.doc.option.mgr</Name>
+      <BoolOpt lbl="Diagrams" nm="doc.diagrams" on="1" spl="0"/>
+      <BoolOpt lbl="Foreign Keys" nm="doc.fks" on="1" spl="0"/>
+      <BoolOpt lbl="Indexes" nm="doc.indexes" on="1" spl="0"/>
+      <BoolOpt lbl="Overwrite CSS File" nm="doc.overwrite.css" on="1" spl="0"/>
+      <BoolOpt lbl="Procedures" nm="doc.procs" on="1" spl="0"/>
+      <BoolOpt lbl="Schemas" nm="doc.schemas" on="1" spl="0"/>
+      <BoolOpt lbl="Sequences" nm="doc.sequences" on="1" spl="0"/>
+      <BoolOpt lbl="Tables" nm="doc.tables" on="1" spl="0"/>
+      <BoolOpt lbl="Triggers" nm="doc.triggers" on="1" spl="0"/>
+      <BoolOpt lbl="Views" nm="doc.views" on="1" spl="0"/>
+    </BasicOptionMgr>
+  </DbDocOptionMgr>
+  <OpenEditors>
+    <OpenEditor ClsNm="Diagram" fqn="null.diagramA" selected="1"/>
+  </OpenEditors>
+  <TreePaths>
+    <TreePath/>
+  </TreePaths>
+  <SqlTexts/>
+</Db>

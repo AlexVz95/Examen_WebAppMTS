@@ -1,0 +1,219 @@
+/************ Update: Schemas ***************/
+
+/* Add Schema: alexvz */
+CREATE SCHEMA alexvz;
+
+
+
+/************ Update: Tables ***************/
+
+/******************** Add Table: "alexvz"."Consultas" ************************/
+
+/* Build Table Structure */
+CREATE TABLE "alexvz"."Consultas"
+(
+	"IdConsulta" INTEGER NOT NULL,
+	"Fecha" VARCHAR(10) NULL,
+	"Costo" INTEGER NULL,
+	"Hora_Consulta" VARCHAR(10) NULL,
+	"idHomeopata" INTEGER NULL,
+	"idMedico" INTEGER NULL,
+	"idPaciente" INTEGER NULL
+) WITHOUT OIDS;
+
+/* Add Primary Key */
+ALTER TABLE "alexvz"."Consultas" ADD CONSTRAINT "pkConsultas"
+	PRIMARY KEY ("IdConsulta");
+
+
+/******************** Add Table: "alexvz"."Enfermedad" ************************/
+
+/* Build Table Structure */
+CREATE TABLE "alexvz"."Enfermedad"
+(
+	"IdEnfermedad" INTEGER NOT NULL,
+	"Nombre" VARCHAR(30) NULL,
+	"Desc" VARCHAR(30) NULL
+) WITHOUT OIDS;
+
+/* Add Primary Key */
+ALTER TABLE "alexvz"."Enfermedad" ADD CONSTRAINT "pkEnfermedad"
+	PRIMARY KEY ("IdEnfermedad");
+
+
+/******************** Add Table: "alexvz"."Enfermedad_Reco" ************************/
+
+/* Build Table Structure */
+CREATE TABLE "alexvz"."Enfermedad_Reco"
+(
+	"idEnfermedad" INTEGER NOT NULL,
+	"idMedicamentos" INTEGER NOT NULL
+) WITHOUT OIDS;
+
+
+/******************** Add Table: "alexvz"."Homeopatas" ************************/
+
+/* Build Table Structure */
+CREATE TABLE "alexvz"."Homeopatas"
+(
+	"IdHomeopata" INTEGER NOT NULL,
+	"Nombre" VARCHAR(40) NULL,
+	"Cedula_Ide" VARCHAR(18) NULL,
+	"Direccion" VARCHAR(40) NULL,
+	"Telefono" VARCHAR(10) NULL,
+	"Fecha_Inicio" VARCHAR(10) NULL
+) WITHOUT OIDS;
+
+/* Add Primary Key */
+ALTER TABLE "alexvz"."Homeopatas" ADD CONSTRAINT "pkHomeopatas"
+	PRIMARY KEY ("IdHomeopata");
+
+
+/******************** Add Table: "alexvz"."Medicamentos" ************************/
+
+/* Build Table Structure */
+CREATE TABLE "alexvz"."Medicamentos"
+(
+	"IdMedicamentos" INTEGER NOT NULL,
+	"Nombre" VARCHAR(30) NOT NULL,
+	"Codigo_Med" VARCHAR(10) NOT NULL
+) WITHOUT OIDS;
+
+/* Add Primary Key */
+ALTER TABLE "alexvz"."Medicamentos" ADD CONSTRAINT "pkMedicamentos"
+	PRIMARY KEY ("IdMedicamentos");
+
+
+/******************** Add Table: "alexvz"."Medicos" ************************/
+
+/* Build Table Structure */
+CREATE TABLE "alexvz"."Medicos"
+(
+	"IdMedico" INTEGER NOT NULL,
+	"idHomeopata" INTEGER NULL,
+	"Especialidad" VARCHAR(15) NULL
+) WITHOUT OIDS;
+
+/* Add Primary Key */
+ALTER TABLE "alexvz"."Medicos" ADD CONSTRAINT "pkMedicos"
+	PRIMARY KEY ("IdMedico");
+
+
+/******************** Add Table: "alexvz"."Paciente_atendido" ************************/
+
+/* Build Table Structure */
+CREATE TABLE "alexvz"."Paciente_atendido"
+(
+	"idHomeopata" INTEGER NULL,
+	"idMedicos" INTEGER NULL,
+	"idPaciente" INTEGER NULL,
+	"idEnfermedad" INTEGER NULL,
+	"idMedicamentos" INTEGER NULL,
+	"idConsulta" INTEGER NULL
+) WITHOUT OIDS;
+
+
+/******************** Add Table: "alexvz"."Pacientes" ************************/
+
+/* Build Table Structure */
+CREATE TABLE "alexvz"."Pacientes"
+(
+	"IdPaciente" INTEGER NOT NULL,
+	"Nombre" VARCHAR(40) NULL,
+	"Cedula_Ide" VARCHAR(18) NULL,
+	"Telefono" VARCHAR(10) NULL,
+	"Direccion" VARCHAR(40) NULL,
+	"Edad" INTEGER NULL
+) WITHOUT OIDS;
+
+/* Add Primary Key */
+ALTER TABLE "alexvz"."Pacientes" ADD CONSTRAINT "pkPacientes"
+	PRIMARY KEY ("IdPaciente");
+
+
+/******************** Add Table: "alexvz"."Sustancias" ************************/
+
+/* Build Table Structure */
+CREATE TABLE "alexvz"."Sustancias"
+(
+	"idSustancias" INTEGER NOT NULL,
+	"idMedicamentos" INTEGER NOT NULL,
+	"Nombre" VARCHAR(30) NULL,
+	"Codigo_Sus" VARCHAR(10) NULL,
+	"Combinacion" BOOL NULL
+) WITHOUT OIDS;
+
+/* Add Primary Key */
+ALTER TABLE "alexvz"."Sustancias" ADD CONSTRAINT "pkSustancias"
+	PRIMARY KEY ("idSustancias");
+
+
+
+
+
+/************ Add Foreign Keys ***************/
+
+/* Add Foreign Key: fk_Consultas_Homeopatas */
+ALTER TABLE "alexvz"."Consultas" ADD CONSTRAINT "fk_Consultas_Homeopatas"
+	FOREIGN KEY ("idHomeopata") REFERENCES "alexvz"."Homeopatas" ("IdHomeopata")
+	ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+/* Add Foreign Key: fk_Consultas_Medicos */
+ALTER TABLE "alexvz"."Consultas" ADD CONSTRAINT "fk_Consultas_Medicos"
+	FOREIGN KEY ("idMedico") REFERENCES "alexvz"."Medicos" ("IdMedico")
+	ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+/* Add Foreign Key: fk_Consultas_Pacientes */
+ALTER TABLE "alexvz"."Consultas" ADD CONSTRAINT "fk_Consultas_Pacientes"
+	FOREIGN KEY ("idPaciente") REFERENCES "alexvz"."Pacientes" ("IdPaciente")
+	ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+/* Add Foreign Key: Enfermedad_Reco */
+ALTER TABLE "alexvz"."Enfermedad_Reco" ADD CONSTRAINT "Enfermedad_Reco"
+	FOREIGN KEY ("idEnfermedad") REFERENCES "alexvz"."Enfermedad" ("IdEnfermedad")
+	ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+/* Add Foreign Key: fk_Enfermedad_Reco_Medicamentos */
+ALTER TABLE "alexvz"."Enfermedad_Reco" ADD CONSTRAINT "fk_Enfermedad_Reco_Medicamentos"
+	FOREIGN KEY ("idMedicamentos") REFERENCES "alexvz"."Medicamentos" ("IdMedicamentos")
+	ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+/* Add Foreign Key: fk_Medicos_Homeopatas */
+ALTER TABLE "alexvz"."Medicos" ADD CONSTRAINT "fk_Medicos_Homeopatas"
+	FOREIGN KEY ("idHomeopata") REFERENCES "alexvz"."Homeopatas" ("IdHomeopata")
+	ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+/* Add Foreign Key: fk_Paciente_atendido_Consultas */
+ALTER TABLE "alexvz"."Paciente_atendido" ADD CONSTRAINT "fk_Paciente_atendido_Consultas"
+	FOREIGN KEY ("idConsulta") REFERENCES "alexvz"."Consultas" ("IdConsulta")
+	ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+/* Add Foreign Key: fk_Paciente_atendido_Enfermedad */
+ALTER TABLE "alexvz"."Paciente_atendido" ADD CONSTRAINT "fk_Paciente_atendido_Enfermedad"
+	FOREIGN KEY ("idEnfermedad") REFERENCES "alexvz"."Enfermedad" ("IdEnfermedad")
+	ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+/* Add Foreign Key: fk_Paciente_atendido_Homeopatas */
+ALTER TABLE "alexvz"."Paciente_atendido" ADD CONSTRAINT "fk_Paciente_atendido_Homeopatas"
+	FOREIGN KEY ("idHomeopata") REFERENCES "alexvz"."Homeopatas" ("IdHomeopata")
+	ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+/* Add Foreign Key: fk_Paciente_atendido_Medicamentos */
+ALTER TABLE "alexvz"."Paciente_atendido" ADD CONSTRAINT "fk_Paciente_atendido_Medicamentos"
+	FOREIGN KEY ("idMedicamentos") REFERENCES "alexvz"."Medicamentos" ("IdMedicamentos")
+	ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+/* Add Foreign Key: fk_Paciente_atendido_Medicos */
+ALTER TABLE "alexvz"."Paciente_atendido" ADD CONSTRAINT "fk_Paciente_atendido_Medicos"
+	FOREIGN KEY ("idMedicos") REFERENCES "alexvz"."Medicos" ("IdMedico")
+	ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+/* Add Foreign Key: fk_Paciente_atendido_Pacientes */
+ALTER TABLE "alexvz"."Paciente_atendido" ADD CONSTRAINT "fk_Paciente_atendido_Pacientes"
+	FOREIGN KEY ("idPaciente") REFERENCES "alexvz"."Pacientes" ("IdPaciente")
+	ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+/* Add Foreign Key: fk_Sustancias_Medicamentos */
+ALTER TABLE "alexvz"."Sustancias" ADD CONSTRAINT "fk_Sustancias_Medicamentos"
+	FOREIGN KEY ("idMedicamentos") REFERENCES "alexvz"."Medicamentos" ("IdMedicamentos")
+	ON UPDATE NO ACTION ON DELETE NO ACTION;

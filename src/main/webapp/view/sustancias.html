@@ -1,0 +1,108 @@
+<br>
+<br>
+<div class="container">
+  <form>
+  	<h1 class="offset-sm-4 col-sm-10">Pantalla de Sustancias</h1>
+  	<br>
+  	
+
+  	<div class="row">
+		<div class="col-xs-4 col-sm-6 col-md-4 col-lg-3">
+			<div class="form-group row">
+			    <label for="Nombre">Buscar:</label>
+			    <input type="text" class="form-control" id="nombre" ng-model="filters.myfilter" placeholder="Nombre">
+		  </div>
+		</div>
+		
+		
+  	</div>
+  	
+  	
+  	<br>
+<br>
+  </form>
+			<table ng-table="tableParams" 
+				class="table table-striped  table-bordered">
+				<tr ng-repeat="catalog in $data">
+					<td data-title="'idSustancias'" class="active" sortable="'idSustancias'"
+						header-class="flechas_columnas">{{catalog.idSustancias}}</td>
+					<td data-title="'IdMedicamentos'" class="active" sortable="'idMedicamentos'"
+						header-class="flechas_columnas">{{catalog.idMedicamentos}}</td>
+					<td data-title="'Nombre'" class="text" sortable="'nombre'"
+						header-class="flechas_columnas">{{catalog.nombre}}</td>
+					<td data-title="'Codigo_Sustancia'" class="active" sortable="'Codigo_Sustancia'"
+						header-class="flechas_columnas">{{catalog.codigo_sus}}</td>
+					<td data-title="'Se puede combinar'" class="active" sortable="'combinar'"
+						header-class="flechas_columnas">{{catalog.combinacion}}</td>
+						
+				</tr>
+			</table>
+			
+			
+		</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Editar Paciente</h4>
+      </div>
+      <div class="modal-body">
+      
+      	<form>
+		  <div class="form-group">
+		    <label for="Nombre">Nombre:</label>
+		    <input type="text" class="form-control" id="nombre" ng-model="update.nombre" placeholder="Nombre">
+		  </div>
+		  <div class="form-group">
+		    <label for="Nombre">Cedula de identificacion:</label>
+		    <input type="text" class="form-control" id="codigo_medicinal" ng-model="update.codigo_med" placeholder="Codigo_Med">
+		  </div>
+		  <span ng-show="bandera.validate">Error en datos</span>
+		</form> 
+         
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" ng-click="actualizarDatos()">Guardar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="insertarMedicamento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+      
+      	<form>
+		  <div class="form-group">
+		    <label for="Nombre">Nombre:</label>
+		    <input type="text" class="form-control" id="nombre" ng-model="insertar.nombre" placeholder="Nombre">
+		  </div>
+		  <div class="form-group">
+		    <label for="Nombre">Codigo_Medicinal:</label>
+		    <input type="text" class="form-control" id="cedula" ng-model="insertar.codigo_med" placeholder="Codigo Medicina">
+		  </div>
+		   <span ng-show="bandera.validate">Error en datos</span>
+		</form> 
+         
+         <div class="alert alert-danger" role="alert" ng-show="bandera.validate">
+		 	 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  				<span class="sr-only">Error:</span>
+  				menor de 10
+		</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" ng-click="insertarDatos()">Guardar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
